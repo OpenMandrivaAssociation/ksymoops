@@ -12,7 +12,6 @@ Source3:	README.mandriva
 Patch1:		ksymoops-2.4.3-add_gz_modules_support
 BuildRequires:	binutils-devel
 Requires:	binutils
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 The Linux kernel produces error messages that contain machine specific numbers
