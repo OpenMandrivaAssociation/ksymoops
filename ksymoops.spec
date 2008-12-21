@@ -1,18 +1,18 @@
 Summary:	Kernel oops and error message decoder
 Name:		ksymoops
-Version:	2.4.9
-Release:	%mkrel 5
+Version:	2.4.11
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		ftp://ftp.kernel.org/pub/linux/utils/kernel/ksymoops/v2.4/
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kernel.org/pub/linux/utils/kernel/ksymoops/v2.4/%{name}-%{version}.tar.gz
 Source1:	ksymoops-gznm
 Source2:	ksymoops-script
 Source3:	README.mandriva
 Patch1:		ksymoops-2.4.3-add_gz_modules_support
 BuildRequires:	binutils-devel
 Requires:	binutils
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The Linux kernel produces error messages that contain machine specific numbers
@@ -29,7 +29,7 @@ cp %{SOURCE2} ksymoops-script
 cp %{SOURCE3} README.mandriva
 
 %build
-CFLAGS="%{optflags}" make DEF_MAP=\\\"/boot/System.map-*r\\\" all
+CFLAGS="%{optflags}" LDFLAGS="%{ldflags}" make DEF_MAP=\\\"/boot/System.map-*r\\\" all
  
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
