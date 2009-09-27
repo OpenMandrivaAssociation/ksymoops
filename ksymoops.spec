@@ -1,7 +1,7 @@
 Summary:	Kernel oops and error message decoder
 Name:		ksymoops
 Version:	2.4.11
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		ftp://ftp.kernel.org/pub/linux/utils/kernel/ksymoops/v2.4/
@@ -10,6 +10,7 @@ Source1:	ksymoops-gznm
 Source2:	ksymoops-script
 Source3:	README.mandriva
 Patch1:		ksymoops-2.4.3-add_gz_modules_support
+Patch2:		ksymoops_fix_link.patch
 BuildRequires:	binutils-devel
 Requires:	binutils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -23,6 +24,7 @@ the error log and converts the addresses to meaningful symbols and offsets.
 
 %setup -q
 %patch1 -p1
+%patch2 -p1
 
 cp %{SOURCE1} ksymoops-gznm
 cp %{SOURCE2} ksymoops-script
