@@ -1,7 +1,7 @@
 Summary:	Kernel oops and error message decoder
 Name:		ksymoops
 Version:	2.4.11
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		ftp://ftp.kernel.org/pub/linux/utils/kernel/ksymoops/v2.4/
