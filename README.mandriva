@@ -1,0 +1,15 @@
+
+README for Mandriva Linux
+-------------------------
+
+Mandriva Linux ships by default gzipped modules.  For ksymoops to
+understand that modules, we have wrote the ksymoops-gznm utility.
+
+If you don't need to pass any especial option to ksymoops (i.e. you
+are cross compiling or similar), you don't need to continue reading.
+
+If you need to change the parameters that we pass to KSYMOOPS_NM you
+need to look at /usr/bin/ksymoops-gznm and put the parameters that you
+need there.
+
+Juan Quintela <quintela@mandriva.com>.

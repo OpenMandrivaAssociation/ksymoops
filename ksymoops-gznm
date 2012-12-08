@@ -1,0 +1,35 @@
+#!/bin/sh
+# 
+# 20040531 security fix (glee at bluesat.unsw.edu.au)
+# create proper tmp file
+
+module_name=$1
+
+if [ -z $module_name ]; then
+	echo "gznm: you need to pass the file you want disassemble"
+	exit 1
+fi
+
+filenamegz=`basename $module_name`
+filename=`basename $module_name .gz`
+
+# use mktemp to make sure that the file is owned by us first.
+# later on when we unzip we overwrite this file but since we created
+# it is ok not some schmuck's symlink which points to somewhere else.
+unzipped=`mktemp /tmp/gznm.XXXXXX` || exit 1
+zipped=`mktemp /tmp/gznm.XXXXXX` || exit 1
+
+# delete on signal
+trap "rm -f $unzipped $zipped; exit 1" 1 2 3 5 10 13 15
+
+if [ $filenamegz = $filename ]; then
+	nm $module_name
+else
+	/bin/cp $module_name $zipped
+	/bin/zcat $zipped > $unzipped
+	/usr/bin/nm $unzipped
+	/bin/rm $unzipped
+	/bin/rm $zipped
+fi
+
+exit 0
